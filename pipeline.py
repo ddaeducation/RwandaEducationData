@@ -19,7 +19,7 @@ PG_DATABASE = os.getenv("PG_DATABASE")
 PG_PASSWORD = os.getenv("PG_PASSWORD")
 PG_PORT = os.getenv("PG_PORT")
 
-# Connecting the SHEMA & DATABASE
+# Targeting the schema and table from PostgreSQL
 schema_name : "edtech"
 table_name : "rwanda"
 
