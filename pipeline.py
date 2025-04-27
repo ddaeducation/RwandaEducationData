@@ -29,12 +29,12 @@ table_name = "rwanda"
 # importing the data into python
 # ===========   END  ===================
 # Fetching the csv data from PostgreSQL
-print("I am happy, I have fetched the Data From Kobotoolbox ...")
+print("I have fetched the Data From Kobotoolbox ...")
 response = requests.get(KOBO_CSV_URL,auth=HTTPBasicAuth(KOBO_USERNAME,KOBO_PASSWORD))
 
 # Checking if the data was fetched successfull
 if response.status_code == 200:
-    print("Woow, data was fetched successful")
+    print("Data was fetched successful")
 
     # Importing the dataframe 
     csv_data = io.StringIO(response.text)
@@ -103,6 +103,31 @@ if response.status_code == 200:
             Graduation_Year,
             Address
         ) VALUES %s;
-    """
-
-    # 
+   """
+    
+    for _, row in df.iterrows():
+        cur.execute(insert_query, (
+            row.get["start"],
+            row.get["end"],
+            row.get["Name"],
+            row.get['Gender'],
+            row.get['Age'],
+            row.get['Program_Of_Study'],
+            row.get['Year_Of_Enrollment'],
+            row.get['Grade'],
+            row.get['Province'],
+            row.get['District'],
+            row.get['Status'],
+            row.get['Scholarship_Status'],
+            row.get['Enrollment_Status'],
+            row.get['Graduation_Year'],
+            row.get['Address']
+        ))    # Commit the changes and close the connection  
+    conn.commit()   
+    cur.close()
+    conn.close()
+    print("I have successfully uploaded the data into PostgreSQL")  
+else:
+    print("Failed to fetch data from KoboToolbox. Status code:", response.status_code)
+    print("Response content:", response.text)       
+# ===========   END  ===================
