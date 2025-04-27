@@ -39,15 +39,15 @@ if response.status_code == 200:
     # Importing the dataframe 
     csv_data = io.StringIO(response.text)
     df =pd.read_csv(csv_data, sep=";", on_bad_lines="skip")
+    df.columns = df.columns.str.replace(" ","_").str.replace("(","").str.replace(")","").str.replace("-","_").str.replace(".","_") 
     
     # Importing the data frame
     print(f"I have successfull import data {df.head}")
- 
-
-
+    
     # ================ END =====================
-
+    # https://simplemaps.com/svg/country/rw#admin1 & https://mapshaper.org/
     # Uploading the Data into possigress
+    
     conn=psycopg2.connect(
         host = PG_HOST,
         database = PG_DATABASE,
@@ -64,7 +64,6 @@ if response.status_code == 200:
     cur.execute(f"DROP TABLE IF EXISTS {schema_name}.{table_name};")
 
     # Create a new table with predefined schema
-    
     cur.execute(f"""
         CREATE TABLE IF NOT EXISTS{schema_name}.{table_name}(
             Id SERIAL PRIMARY KEY,
