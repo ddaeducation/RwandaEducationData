@@ -69,9 +69,40 @@ if response.status_code == 200:
             Id SERIAL PRIMARY KEY,
             "start" TIMESTAMP,
             "end" TIMESTAMP,
-            "date" "D,
-
-        
+            Name TEXT,
+            Gender TEXT,
+            Age INT,
+            Program_Of_Study TEXT,
+            Year_Of_Enrollment TEXT,
+            Grade FLOAT,
+            Province TEXT,
+            District TEXT,
+            Status TEXT,
+            Scholarship_Status TEXT,
+            Enrollment_Status TEXT,
+            Graduation_Year TEXT,
+            Address TEXT
         )
-        """
-    )
+    """)
+    # Inserting the data into the table
+    insert_query = f"""
+        INSERT INTO {schema_name}.{table_name} (
+            "start",
+            "end",
+            Name,
+            Gender,
+            age,
+            Program_Of_Study,
+            Year_Of_Enrollment,
+            Grade,
+            Province,
+            District,
+            Status,
+            Scholarship_Status,
+            Enrollment_Status,
+            Graduation_Year,
+            Address
+        ) VALUES %s;
+    """
+
+    # 
