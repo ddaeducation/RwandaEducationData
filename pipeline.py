@@ -13,7 +13,7 @@ load_dotenv()
 # KoboToolbox credentials and CSV export URL
 KOBO_USERNAME = os.getenv("KOBO_USERNAME")
 KOBO_PASSWORD = os.getenv("KOBO_PASSWORD")
-KOBO_CSV_URL = ""
+KOBO_CSV_URL = "https://kf.kobotoolbox.org/api/v2/assets/aDXq36HCefxrUmhTbgx6pg/export-settings/esBd8FoDyMXDVBumMixQn4X/data.csv"
 
 # PostgreSQL Credentials 
 PG_HOST = os.getenv("PG_HOST")
