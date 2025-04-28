@@ -64,8 +64,8 @@ if response.status_code == 200:
     cur.execute(f"""
         CREATE TABLE {schema_name}.{table_name} (
             id SERIAL PRIMARY KEY,
-            start TIMESTAMP,
-            end TIMESTAMP,
+            "start" TIMESTAMP,
+            "end" TIMESTAMP,
             name TEXT,
             gender TEXT,
             age INT,
@@ -85,8 +85,8 @@ if response.status_code == 200:
     # Insert data efficiently
     insert_query = f"""
         INSERT INTO {schema_name}.{table_name} (
-            start,
-            end,
+            "start",
+            "end",
             name,
             gender,
             age,
