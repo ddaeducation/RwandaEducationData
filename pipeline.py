@@ -23,7 +23,7 @@ PG_PASSWORD = os.getenv("PG_PASSWORD")
 PG_PORT = os.getenv("PG_PORT")
 
 # Targeting the schema and table from PostgreSQL
-schema_name = "edtech"
+schema_name = "warrecords"
 table_name = "rwanda"
 
 # importing the data into python
@@ -51,7 +51,7 @@ if response.status_code == 200:
     conn=psycopg2.connect(
         host = PG_HOST,
         database = PG_DATABASE,
-        user = PG_HOST,
+        user = PG_USER,
         port = PG_PORT,
         password = PG_PASSWORD
     )
